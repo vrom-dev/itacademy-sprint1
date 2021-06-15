@@ -25,8 +25,9 @@ invokeWithTemplateStrings`${name} ${surname}` //output: 'Víctor Romero'
 function printFromZeroToNine () {
   console.log('\nImprimint llista del 0 al 9:')
   for (let i = 0; i < 10; i++) {
-    console.log(i)
+    process.stdout.write(`${i} `)
   }
+  console.log('')
 }
 
 const functionsArray = []

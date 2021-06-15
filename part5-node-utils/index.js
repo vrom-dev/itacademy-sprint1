@@ -3,11 +3,12 @@ const fs = require('fs');
 /* Nivell 1 */
 // Exercici 1
 function printMessageEverySecond(message) {
-  global.setInterval(()=> {
-    console.log(message)
+  console.log(message)
+  global.setTimeout(()=> {
+    printMessageEverySecond(message)
   }, 1000)
 }
-printMessageEverySecond('Hello World') // output(each sec.): 'Hello World'
+printMessageEverySecond('Hello World') // output(x1s): 'Hello World'
 
 // Exercici 2
 const message = `#Exercici 2
