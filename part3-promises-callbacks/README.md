@@ -1,13 +1,13 @@
 # Nivell 1
 ## Exercici 1
-## Crear una function que retorni una Promise que invoqui la funcion resolve() o bé reject() que rep. Invocar##la des de fora pasandole totes dues funcions que imprimeixin un missatge diferent en cada cas.
+- Crear una function que retorni una Promise que invoqui la funcion resolve() o bé reject() que rep. Invocar##la des de fora pasandole totes dues funcions que imprimeixin un missatge diferent en cada cas.
 
 ## Exercici 2
-## Crear una arrow function que, rebent un paràmetre i una function callback, li passi a la funció un missatge o un altre (que s'imprimirà per consola) en funció del paràmetre.
+- Crear una arrow function que, rebent un paràmetre i una function callback, li passi a la funció un missatge o un altre (que s'imprimirà per consola) en funció del paràmetre.
 
 # Nivell 2
 ## Exercici 1
-## Donats els objectes employees i salaries, creu una arrow function getEmpleado que retorni una Promise efectuant la cerca en l'objecte pel seu id.
+- Donats els objectes employees i salaries, creu una arrow function getEmpleado que retorni una Promise efectuant la cerca en l'objecte pel seu id.
 ```javascript
 let employees = [{
     id: 1,
