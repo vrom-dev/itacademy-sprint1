@@ -19,7 +19,7 @@
 - Creu una funció que guardi en disc els fitxers del punt anterior encriptats amb algorisme aes-192-cbc, i esborri els fitxers inicials.
 - Creu una altra funció que desencripti i descodifiqui els fitxers finals tornant a generar els inicials.
 
-### Nota per comprobar el funcionament de l'exercici executar cada script en ordre:
+- Nota: per comprobar el funcionament de l'exercici executar cada script en ordre:
 ```bash
 node nivell1
 node nivell2
