@@ -1,4 +1,4 @@
-const fsPromises = require('fs').promises
+const fsPromises = require('fs/promises')
 
 // Exercici 1
 // Imprimeix recursivament un missatge per consola amb demores d'un segon.

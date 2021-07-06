@@ -1,7 +1,9 @@
 const cp = require('child_process')
 const fs = require('fs')
 const zlib = require('zlib')
-const { pipeline } = require('stream/promises')
+const { pipeline } = require('stream')
+const { promisify } = require('util')
+const pipe = promisify(pipeline)
 
 // Part1
 // Creu una funció que comprimeixi el file del nivell 1
@@ -9,7 +11,7 @@ const compress = async (entryFile) => {
   const gzip = zlib.createGzip()
   const source = fs.createReadStream(entryFile)
   const outputFile = fs.createWriteStream(`${entryFile}.gz`)
-  await pipeline(source, gzip, outputFile)
+  await pipe(source, gzip, outputFile)
 }
 compress('notes.md')
   .catch(err => {
