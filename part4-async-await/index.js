@@ -39,9 +39,9 @@ const getSalario = (employee) => {
 const asyncPrinter = async (id) => {
   const employee = await getEmpleado(id)
   const salary = await getSalario(employee)
-  console.log(`Nom: ${employee.name} Salari: ${salary}`)
+  console.log(`N1-E2: { Nom: ${employee.name} Salari: ${salary} }`)
 }
-asyncPrinter(3) // output: 'Nom: Jeff Bezos Salari: 2000'
+asyncPrinter(3) // output: 'N1-E2: Nom: Jeff Bezos Salari: 2000'
 
 /* Nivell 2 */
 // Exercici 1
@@ -57,10 +57,10 @@ const sayHiAfter2s = (name) => {
 
 const startFn = async (name) => {
   const message = await sayHiAfter2s(name)
-  console.log(message)
+  console.log('N2-E1: ' + message)
 }
 
-startFn('Vic') // output: 'Hi Vic'
+startFn('Vic') // output: 'N2-E1: Hi Vic'
 
 /* Nivell 3 */
 // Exercici 1
@@ -77,14 +77,14 @@ const sayHiAfter2sv2 = (name) => {
 const startFnv2 = async (name) => {
   try {
     const message = await sayHiAfter2sv2(name)
-    console.log(message)
+    console.log('N3-E1: ' + message)
   } catch (e) {
-    console.log(e)
+    console.log('N3-E1: ' + e)
   }
 }
 
-startFnv2('        ') // output: 'Error. You need to pass a string as a name'
-startFnv2('') // output: 'Error. You need to pass a string as a name'
-startFnv2() // output: 'Error. You need to pass a string as a name'
-startFnv2(1234) // output: 'Error. You need to pass a string as a name'
-startFnv2('Vic') // output: 'Hi Vic'
+startFnv2('        ') // output: 'N3-E1: Error. You need to pass a string as a name'
+startFnv2('') // output: 'N3-E1: Error. You need to pass a string as a name'
+startFnv2() // output: 'N3-E1: Error. You need to pass a string as a name'
+startFnv2(1234) // output: 'N3-E1: Error. You need to pass a string as a name'
+startFnv2('Vic') // output: 'N3-E1: Hi Vic'
