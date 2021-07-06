@@ -3,31 +3,30 @@
 function printName(str) {
   console.log(str)
 }
-printName('Víctor') // output: 'Víctor'
+printName('N1-E1: Víctor') // output: 'N1-E1: Víctor'
 
 /* Nivell 2 */
 // Exercici 1
-function printWithTemplateStrings(name, surname) {
-  console.log(`${name} ${surname}`)
+function printFullName(name, surname) {
+  console.log(`N2-E1: El meu nom és ${name} ${surname}`)
 }
 const name = 'Víctor'
 const surname = 'Romero'
-printWithTemplateStrings(name, surname) //output: 'Víctor Romero'
+printFullName(name, surname) //output: 'N2-E1: El meu nom és Víctor Romero'
 
 // Exercici 2
-function invokeWithTemplateStrings(str, name, surname) {
-  console.log(`${name} ${surname}`)
+function returnFullName(name, surname) {
+  return `${name} ${surname}`
 }
-invokeWithTemplateStrings`${name} ${surname}` //output: 'Víctor Romero'
+console.log(`N2-E2: El meu nom és ${returnFullName(name, surname)}`) //output: 'N2-E2: El meu nom és Víctor Romero'
 
 /* Nivell 3 */
 // Exercici 1
 function printFromZeroToNine () {
   console.log('\nImprimint llista del 0 al 9:')
   for (let i = 0; i < 10; i++) {
-    process.stdout.write(`${i} `)
+    console.log(`${i} `)
   }
-  console.log('')
 }
 
 const functionsArray = []
@@ -41,4 +40,4 @@ functionsArray.forEach(fn => fn()) // output(x10): Imprimint llista del 0 al 9: 
 // Exercici 2
 const logName = ((str) => {
   console.log(str)
-})('Víctor Romero') // output: Víctor Romero.
+})('N3-E2: Víctor Romero') // output: 'N3-E2: Víctor Romero'
