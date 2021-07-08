@@ -22,8 +22,8 @@ compress('notes.md')
 // Part2
 // Creu una funció que llisti per consola el contingut 
 // del directori d'usuari. Utilitzi node Child Processes.
-cp.exec('ls -l', (err, stdout, stderr) => {
-  console.log('Printing the result of "ls -l"')
+cp.exec('dir', (err, stdout, stderr) => {
+  console.log('Printing the result of "dir"')
   console.log(stdout)
 })
 
