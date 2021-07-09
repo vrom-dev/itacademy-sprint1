@@ -1,7 +1,6 @@
 /**************************************************************************/
 /******************************** NIVELL 1 ********************************/
 /**************************************************************************/
-/*
 const fsPromises = require('fs/promises')
 
 // Exercici 1
@@ -31,14 +30,15 @@ const readerFn = async (path) => {
 }
 
 (async () => {
-  const outputFile = await writerFn('notes.md', 'Victor Romero')
+  const outputFile = await writerFn('N1file.txt', 'Víctor Romero')
   const content = await readerFn(outputFile)
   console.log(`N1-E3: file: ${outputFile} content: ${content}`)
 })()
-*/
+
 /**************************************************************************/
 /******************************** NIVELL 2 ********************************/
 /**************************************************************************/
+
 /*
 const cp = require('child_process')
 const fs = require('fs')
@@ -55,7 +55,7 @@ const compress = async (entryFile) => {
   const outputFile = fs.createWriteStream(`${entryFile}.gz`)
   await pipe(source, gzip, outputFile)
 }
-compress('notes.md')
+compress('N1file.txt')
   .catch(err => {
     console.log(err)
     process.exitCode = 1
@@ -73,26 +73,33 @@ cp.exec('dir', (err, stdout, stderr) => {
 /**************************************************************************/
 /******************************** NIVELL 3 ********************************/
 /**************************************************************************/
+
+/******************************** PART 1 **********************************/
 /*
-// Part1
 // Crea una funció que creï dos fitxers codificats en hexadecimal i en base64 
 // respectivament, a partir del fitxer de l'exercici inicial.
+
 const fsPromises = require('fs/promises')
 
-const convertTo = async (path, output, encoding = 'utf8') => {
-  const content = await fsPromises.readFile(path)
-  const newContent = content.toString(encoding)
-  fsPromises.writeFile(output, newContent)
-  return newContent
+const convertTo = (from, to) => async (inputFile, outputFile) => {
+  const content = await fsPromises.readFile(inputFile)
+  const buffer = Buffer.from(content.toString(), from)
+  const newContent = buffer.toString(to)
+  fsPromises.writeFile(outputFile, newContent)
 } 
 
-convertTo('notes.md', 'notesHex.md', 'hex')
-convertTo('notes.md', 'notesBase64.md', 'base64')
+const utf8ToHex = convertTo('utf8', 'hex')
+const utf8ToBase64 = convertTo('utf8', 'base64')
+
+utf8ToHex('N1file.txt', 'N3fileHex.txt')
+utf8ToBase64('N1file.txt', 'N3fileBase64.txt')
 */
+
+/******************************** PART 2 **********************************/
 /*
-// Part 2
 // Crea una funció que guardi en disc els fitxers del punt anterior encriptats 
 // amb algorisme aes-192-cbc, i esborri els fitxers inicials.
+
 const fs = require('fs')
 const fsPromises = require('fs/promises')
 const crypto = require('crypto')
@@ -115,14 +122,15 @@ const encrypt = (algorithm, entryFile) => {
   removeFiles(entryFile)
 }
 
-encrypt('aes-192-cbc', 'notesHex.md')
-encrypt('aes-192-cbc', 'notesBase64.md')
+encrypt('aes-192-cbc', 'N3fileHex.txt')
+encrypt('aes-192-cbc', 'N3fileBase64.txt')
 */
 
-
-// Part 3
+/******************************** PART 3 **********************************/
+/*
 // Creu una altra funció que desencripti i descodifiqui els fitxers 
 // finals tornant a generar els inicials.
+
 const fs = require('fs')
 const fsPromises = require('fs/promises')
 const crypto = require('crypto')
@@ -135,16 +143,20 @@ const removeFiles = (path) => {
   fsPromises.rm(path)
 }
 
-const decrypt = async (algorithm, entryFile) => {
-  const outputFile = entryFile.slice(0,-4)
+const decrypt = (algorithm, entryFile, encoding = 'utf-8') => {
   const decipher = crypto.createDecipheriv(algorithm, key, iv)
   const source = fs.createReadStream(entryFile)
-  const output = fs.createWriteStream(outputFile)
+  const chunks = []
   source
-  .pipe(decipher)
-  .pipe(output)
+    .pipe(decipher)
+    .on("data", (chunk) => chunks.push(chunk))
+    .on("end", () => {
+      const newContent = Buffer.from(Buffer.concat(chunks).toString(), encoding)
+      fsPromises.writeFile(`N3decryptedFile${encoding}.txt`, newContent.toString())
+    })
   removeFiles(entryFile)
 }
 
-decrypt('aes-192-cbc', 'notesHex.md.enc')
-decrypt('aes-192-cbc', 'notesBase64.md.enc')
+decrypt('aes-192-cbc', 'N3fileHex.txt.enc', 'hex')
+decrypt('aes-192-cbc', 'N3fileBase64.txt.enc', 'base64')
+*/
