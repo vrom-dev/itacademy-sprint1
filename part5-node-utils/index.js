@@ -1,6 +1,7 @@
 /**************************************************************************/
 /******************************** NIVELL 1 ********************************/
 /**************************************************************************/
+
 const fsPromises = require('fs/promises')
 
 // Exercici 1
@@ -64,7 +65,7 @@ compress('N1file.txt')
 // Part2
 // Creu una funció que llisti per consola el contingut 
 // del directori d'usuari. Utilitzi node Child Processes.
-cp.exec('dir', (err, stdout, stderr) => {
+cp.exec('dir c:\\Users', (err, stdout, stderr) => {
   console.log('Printing the result of "dir"')
   console.log(stdout)
 })
